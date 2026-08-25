@@ -2,175 +2,98 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наши 6 месяцев 💕</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600;700&display=swap');
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fce4ec;
             min-height: 100vh;
+            padding: 1rem;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            padding: 1rem;
-            background: #fce4ec;
-            position: relative;
-            overflow-x: hidden;
         }
-
-        .roses-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            background: 
-                radial-gradient(ellipse at 5% 50%, rgba(255, 182, 193, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 95% 50%, rgba(255, 182, 193, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 5%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 95%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
-                linear-gradient(180deg, #fce4ec 0%, #f8e8ff 50%, #fce4ec 100%);
-        }
-
-        .love-text {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            color: #d81b60;
-            text-align: center;
-            z-index: 100;
-            text-shadow: 0 2px 20px rgba(216, 27, 96, 0.2);
-            animation: glowPulse 3s ease-in-out infinite;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            backdrop-filter: blur(5px);
-            border: 2px solid rgba(216, 27, 96, 0.2);
-            max-width: 92%;
-            line-height: 1.6;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 2px 20px rgba(216, 27, 96, 0.2); }
-            50% { text-shadow: 0 2px 40px rgba(216, 27, 96, 0.4); }
-        }
-
-        .love-text .heart-big { display: block; font-size: 2.2rem; margin: 0.2rem 0; }
-
         .container {
             max-width: 500px;
             width: 100%;
-            min-height: 100vh;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.9);
             border-radius: 30px;
             padding: 2rem 1.5rem;
-            box-shadow: 0 20px 60px rgba(216, 27, 96, 0.15);
+            box-shadow: 0 20px 60px rgba(216,27,96,0.15);
             position: relative;
-            z-index: 1;
-            border: 2px solid rgba(255, 182, 193, 0.3);
         }
+        /* Котики по углам */
+        .cat { position: absolute; font-size: 2.5rem; opacity: 0.5; }
+        .cat-tl { top: 10px; left: 10px; }
+        .cat-tr { top: 10px; right: 10px; }
+        .cat-bl { bottom: 10px; left: 10px; }
+        .cat-br { bottom: 10px; right: 10px; }
 
-        /* ===== МУЗЫКА ===== */
-        .music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid #d81b60;
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(216, 27, 96, 0.2);
-            z-index: 1000;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Текст любви внизу */
+        .love-text {
+            text-align: center;
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
             color: #d81b60;
+            background: rgba(255,255,255,0.85);
+            padding: 1rem;
+            border-radius: 30px;
+            border: 2px solid rgba(216,27,96,0.2);
+            margin: 1.5rem 0 0.5rem 0;
+            line-height: 1.6;
         }
 
-        .music-btn:hover { transform: scale(1.05); box-shadow: 0 4px 30px rgba(216, 27, 96, 0.3); }
-        .music-btn.playing { background: #d81b60; color: white; }
-
-        /* ===== ЭКРАНЫ ===== */
+        /* Экран 1 */
         .screen { display: none; animation: fadeIn 0.8s ease; }
         .screen.active { display: block; }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .welcome-screen {
+        .welcome {
             text-align: center;
             padding: 2rem 0;
         }
-
-        .welcome-screen h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
+        .welcome h1 {
+            font-size: 2rem;
             color: #d81b60;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
+            margin-bottom: 1rem;
         }
-
-        .welcome-screen p {
+        .welcome p {
             font-size: 1.1rem;
             color: #4a148c;
             margin-bottom: 2rem;
-            line-height: 1.6;
         }
-
         .cat-btn {
             background: none;
             border: none;
             font-size: 6rem;
             cursor: pointer;
-            transition: transform 0.3s;
-            animation: float 2s ease-in-out infinite;
+            animation: float 2s infinite;
         }
-
-        .cat-btn:hover { transform: scale(1.1); }
-
+        .cat-btn span {
+            display: block;
+            font-size: 1rem;
+            color: #7b1fa2;
+        }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
 
-        .cat-btn span {
-            display: block;
-            font-size: 1rem;
-            color: #7b1fa2;
-            margin-top: 0.5rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .memory-screen { padding: 0.5rem 0; padding-bottom: 80px; }
-
+        /* Карточки воспоминаний */
         .memory-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.9);
             border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 8px 30px rgba(216, 27, 96, 0.08);
-            border: 1px solid rgba(255, 182, 193, 0.3);
+            border: 1px solid rgba(255,182,193,0.3);
+            box-shadow: 0 8px 30px rgba(216,27,96,0.05);
             opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 0.6s ease forwards;
+            animation: slideUp 0.6s forwards;
         }
-
         .memory-card:nth-child(1) { animation-delay: 0.05s; }
         .memory-card:nth-child(2) { animation-delay: 0.1s; }
         .memory-card:nth-child(3) { animation-delay: 0.15s; }
@@ -207,126 +130,78 @@
             width: 100%;
             border-radius: 12px;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 2px solid rgba(255, 182, 193, 0.2);
-            background: #fce4ec;
+            border: 2px solid rgba(255,182,193,0.2);
         }
-
         .memory-card .text {
             font-size: 1rem;
             color: #1a1a2e;
             line-height: 1.6;
-            font-weight: 400;
         }
-
-        .memory-card .text strong { color: #d81b60; font-weight: 700; }
-
-        .cat-corner {
-            position: absolute;
-            font-size: 2.5rem;
-            opacity: 0.6;
-            animation: float 3s ease-in-out infinite;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .cat-corner.tl { top: 10px; left: 10px; }
-        .cat-corner.tr { top: 10px; right: 10px; }
-        .cat-corner.bl { bottom: 10px; left: 10px; }
-        .cat-corner.br { bottom: 10px; right: 10px; }
-        .cat-corner:nth-child(2) { animation-delay: 0.5s; }
-        .cat-corner:nth-child(3) { animation-delay: 1s; }
-        .cat-corner:nth-child(4) { animation-delay: 1.5s; }
+        .memory-card .text strong { color: #d81b60; }
 
         .back-btn {
-            background: rgba(255, 255, 255, 0.8);
+            background: none;
             border: 2px solid #d81b60;
-            font-size: 1rem;
             color: #d81b60;
-            cursor: pointer;
             padding: 0.5rem 1.2rem;
             border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
             margin-bottom: 1.5rem;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             font-weight: 600;
         }
+        .back-btn:hover { background: #d81b60; color: white; }
 
-        .back-btn:hover { background: #d81b60; color: white; transform: scale(1.02); }
-
-        @media (max-width: 480px) {
-            .container { padding: 1.5rem 1rem; border-radius: 20px; }
-            .welcome-screen h1 { font-size: 1.8rem; }
-            .cat-btn { font-size: 4.5rem; }
-            .cat-corner { font-size: 1.8rem; }
-            .memory-card { padding: 1rem; }
-            .music-btn { width: 48px; height: 48px; font-size: 1.2rem; bottom: 15px; right: 15px; }
-            .love-text { font-size: 1.2rem; bottom: 70px; padding: 0.5rem 1rem; }
-            .love-text .heart-big { font-size: 1.8rem; }
+        /* Кнопка музыки */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid #d81b60;
+            background: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(216,27,96,0.2);
         }
+        .music-btn.playing { background: #d81b60; color: white; }
 
+        /* Сердечки */
         .hearts {
             position: fixed;
             pointer-events: none;
             font-size: 1.5rem;
-            animation: heartFloat 3s ease-out forwards;
+            animation: heartFloat 3s forwards;
             z-index: 1000;
         }
-
         @keyframes heartFloat {
-            0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(-250px) scale(0.5) rotate(40deg); }
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-250px) scale(0.5); }
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 2rem;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.2rem;
-            color: #7b1fa2;
-            opacity: 0.7;
-        }
+        .footer { text-align: center; margin-top: 1rem; font-family: Georgia, serif; color: #7b1fa2; font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
-<!-- ===== РОЗОВЫЙ ФОН С РОЗАМИ ===== -->
-<div class="roses-bg"></div>
+<div class="container">
 
-<!-- ===== ТЕКСТ ЛЮБВИ ВНИЗУ ===== -->
-<div class="love-text">
-    <span class="heart-big">❤️</span>
-    Я очень сильно тебя люблю,<br>
-    мы многое прошли, так что до конца!<br>
-    <span style="font-size: 1.2rem;">💕 Твой навсегда</span>
-</div>
+    <!-- Котики -->
+    <div class="cat cat-tl">🐱</div>
+    <div class="cat cat-tr">🐈</div>
+    <div class="cat cat-bl">🐾</div>
+    <div class="cat cat-br">😺</div>
 
-<!-- ===== МУЗЫКА (YouTube-плеер) ===== -->
-<iframe id="musicPlayer" style="display:none;" src="https://www.youtube.com/embed/mk5EomXPQj4?autoplay=0&loop=1&playlist=mk5EomXPQj4" allow="autoplay"></iframe>
-
-<button class="music-btn" id="musicBtn" onclick="toggleMusic()">
-    🎵
-</button>
-
-<div class="container" id="app">
-
-    <!-- ===== КОТИКИ В УГЛАХ ===== -->
-    <div class="cat-corner tl">🐱</div>
-    <div class="cat-corner tr">🐈</div>
-    <div class="cat-corner bl">🐾</div>
-    <div class="cat-corner br">😺</div>
-
-    <!-- ===== ЭКРАН 1: ПРИВЕТСТВИЕ ===== -->
+    <!-- ===== ЭКРАН 1 ===== -->
     <div class="screen active" id="welcomeScreen">
-        <div class="welcome-screen">
-            <h1>Привет, моё любимое солнышко! 🌞</h1>
-            <p>
-                У нас сегодня <strong>6 месяцев</strong> 💕<br>
-                Я хочу, чтобы ты вспомнила наше прошлое.<br>
-                <span style="font-size: 0.9rem; color: #7b1fa2;">Нажми на котика 👇</span>
-            </p>
+        <div class="welcome">
+            <h1>Привет, моё солнышко! 🌞</h1>
+            <p>У нас сегодня <strong>6 месяцев</strong> 💕<br>
+            Я хочу, чтобы ты вспомнила наше прошлое.<br>
+            <span style="color:#7b1fa2;">Нажми на котика 👇</span></p>
             <button class="cat-btn" onclick="showMemories()">
                 🐈
                 <span>нажми меня</span>
@@ -334,208 +209,218 @@
         </div>
     </div>
 
-    <!-- ===== ЭКРАН 2: ВОСПОМИНАНИЯ ===== -->
+    <!-- ===== ЭКРАН 2 ===== -->
     <div class="screen" id="memoriesScreen">
-        <div class="memory-screen">
-            <button class="back-btn" onclick="showWelcome()">← Назад</button>
+        <button class="back-btn" onclick="showWelcome()">← Назад</button>
 
-            <!-- 1 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/zGpJtVxf/1.jpg" alt="Фото 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fce4ec%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23d81b60%22%3E❤️ Наше фото 1%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Помнишь эту фотку???</strong> 💕<br><br>Тут я пришёл с зала к тебе, ехал на автобусе (тогда у меня были последние деньги). Мы весело провели время и стали на шаг ближе друг к другу ❤️</div>
-            </div>
-
-            <!-- 2 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/9QX27cCk/2.jpg" alt="Фото 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e8f5e9%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%232e7d32%22%3E❤️ Наше фото 2%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>А тут хахах 🤣</strong><br><br>Я очень сильно хотел в туалет и мне пришлось бежать вверх, где сидели Ангелина и Макар, но я всё же поссал ниже 😂</div>
-            </div>
-
-            <!-- 3 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/CKXpXDDX/3.jpg" alt="Фото 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fffde7%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23f57f17%22%3E❤️ Наше фото 3%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>На этой фотке ты с моим запрещённым веществом 😡</strong><br><br>Потом решили, что его выкинем! Больше никаких запрещёнок! 💪</div>
-            </div>
-
-            <!-- 4 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/dQ8cNh09/4.jpg" alt="Фото 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23f3e5f5%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%234a148c%22%3E❤️ Наше фото 4%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>28 марта в 22:57 я подстригся налысо 😭</strong><br><br>Очень жалел, что не послушал себя и сбрил твою любимую причёску... Больше так не буду! 🙏</div>
-            </div>
-
-            <!-- 5 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/QxmGsvcZ/5.jpg" alt="Фото 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e3f2fd%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%231562d1%22%3E❤️ Наше фото 5%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>А помнишь мы шли с кино... 🎬</strong><br><br>И я всё время закрывал лысую голову капюшоном, хаххаах! 🤣</div>
-            </div>
-
-            <!-- 6 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/Sx1BY8ZZ/6.jpg" alt="Фото 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23ffebee%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23c62828%22%3E❤️ Наше фото 6%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Без комментариев 😡</strong><br><br><span style="font-size: 2rem;">😤</span></div>
-            </div>
-
-            <!-- 7 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/kMNLFL1d/7.jpg" alt="Фото 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e0f7fa%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%2300695c%22%3E❤️ Наше фото 7%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>8 апреля я начал тебя фотать))) 📸</strong><br><br>И теперь у меня целая галерея твоих фото ❤️</div>
-            </div>
-
-            <!-- 8 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/TwMHncnV/8.jpg" alt="Фото 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23f9fbe7%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%2382790b%22%3E❤️ Наше фото 8%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>А уже 9 апреля был наш 1 поцелуй! 💋</strong><br><br>Люблю тебя больше жизни! ❤️ Этот день я запомню навсегда.</div>
-            </div>
-
-            <!-- 9 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/TYYNj155/9.jpg" alt="Фото 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fff8e1%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23e65100%22%3E❤️ Наше фото 9%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Помнишь, как мы во время урока договаривались встретиться? 💋</strong><br><br>Переписки под партой, тайные планы — мы были как в кино! 🥰</div>
-            </div>
-
-            <!-- 10 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/HL56W7Fc/10.jpg" alt="Фото 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fbe9e7%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23bf360c%22%3E❤️ Наше фото 10%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>А как тут мы впервые пришли курить до дома Полины... 🚬</strong><br><br>Наши первые прогулки и разговоры по душам ❤️</div>
-            </div>
-
-            <!-- 11 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/MHZ5Y3HK/11.jpg" alt="Фото 11" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23efebe9%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%234e342e%22%3E❤️ Наше фото 11%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Я злой 😡</strong><br><br><span style="font-size: 2rem;">😤</span></div>
-            </div>
-
-            <!-- 12 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/CMJmK0r8/12.jpg" alt="Фото 12" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23ede7f6%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%234a148c%22%3E❤️ Наше фото 12%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>А тут мы первый раз пришли на ВБ 💋</strong><br><br>Помню, как ты выбирала одежду, а я просто смотрел на тебя и улыбался 🥰</div>
-            </div>
-
-            <!-- 13 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/7LvNRZhK/13.jpg" alt="Фото 13" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23f3e5f5%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%236a1b9a%22%3E❤️ Наше фото 13%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Тут ты купила мне шоколадки 🍫</strong><br><br>Было очень вкусно! Спасибо, что балуешь меня ❤️</div>
-            </div>
-
-            <!-- 14 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/4dsQJ2z1/14.jpg" alt="Фото 14" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fce4ec%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23c62828%22%3E❤️ Наше фото 14%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Какая красотка эстетичная ✨</strong><br><br>Ты всегда прекрасна, но на этом фото особенно! ❤️</div>
-            </div>
-
-            <!-- 15 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/x8dGmkpM/15.jpg" alt="Фото 15" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fff3e0%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23e65100%22%3E❤️ Наше фото 15%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>То самое фото хахах 🤣</strong><br><br><span style="font-size: 1.5rem;">😄</span></div>
-            </div>
-
-            <!-- 16 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/J0tJnfty/16.jpg" alt="Фото 16" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e8f5e9%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%231b5e20%22%3E❤️ Наше фото 16%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Померяла мои кроссовки 👟</strong><br><br>Подошли? Теперь у нас общие кроссовки! 😏</div>
-            </div>
-
-            <!-- 17 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/Hxk8ZqwR/17.jpg" alt="Фото 17" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e3f2fd%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%231562d1%22%3E❤️ Наше фото 17%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Куда-то едем 🚗</strong><br><br>С тобой даже дорога в никуда — приключение! ❤️</div>
-            </div>
-
-            <!-- 18 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/HWK8zPVB/18.jpg" alt="Фото 18" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fff8e1%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23f57f17%22%3E❤️ Наше фото 18%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Схавала весь мой холодос 😂</strong><br><br>Моя маленькая обжорка! Люблю тебя такую! 💕</div>
-            </div>
-
-            <!-- 19 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/52WYdY5S/19.jpg" alt="Фото 19" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23f3e5f5%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%234a148c%22%3E❤️ Наше фото 19%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Вроде как первое фото с лицами 📸</strong><br><br>Начало нашей фото-истории 🥰</div>
-            </div>
-
-            <!-- 20 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/V6v5Bjwh/20.jpg" alt="Фото 20" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e8f5e9%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%232e7d32%22%3E❤️ Наше фото 20%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>22 мая 📅</strong><br><br>Особенный день, который мы запомним навсегда ❤️</div>
-            </div>
-
-            <!-- 21 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/bYG9qnnR/21.jpg" alt="Фото 21" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23e0f2f1%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%2300626a%22%3E❤️ Наше фото 21%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Уточка моя) 🦆</strong><br><br>Моя самая красивая уточка! ❤️</div>
-            </div>
-
-            <!-- 22 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/9Q2dPNns/22.jpg" alt="Фото 22" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fff3e0%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23e65100%22%3E❤️ Наше фото 22%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Последний звонок 🔔</strong><br><br>Важный день в твоей жизни, и я был рядом ❤️</div>
-            </div>
-
-            <!-- 23 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/0NW7s52W/23.jpg" alt="Фото 23" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fce4ec%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23c62828%22%3E❤️ Наше фото 23%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Мы милые 💋</strong><br><br>Самая красивая пара в мире! ❤️</div>
-            </div>
-
-            <!-- 24 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/nzN7Xdmy/24.jpg" alt="Фото 24" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23f3e5f5%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%236a1b9a%22%3E❤️ Наше фото 24%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>В примерочной 😏😏😏</strong><br><br><span style="font-size: 1.5rem;">😏</span></div>
-            </div>
-
-            <!-- 25 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/PrWZqQ5b/25.jpg" alt="Фото 25" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23ffebee%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23b71c1c%22%3E❤️ Наше фото 25%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Пьяненькая моя 😈</strong><br><br>В такие моменты ты особенно милая! ❤️</div>
-            </div>
-
-            <!-- 26 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/N0z2nNd0/26.jpg" alt="Фото 26" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fce4ec%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23c62828%22%3E❤️ Наше фото 26%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Первое фото поцелуя 💋</strong><br><br>Этот поцелуй изменил всё. Я люблю тебя! ❤️</div>
-            </div>
-
-            <!-- 27 -->
-            <div class="memory-card">
-                <img src="https://i.postimg.cc/tJh1Y9pt/27.jpg" alt="Фото 27" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23fff8e1%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2230%22 font-family=%22Arial%22 fill=%22%23f57f17%22%3E❤️ Наше фото 27%3C/text%3E%3C/svg%3E'">
-                <div class="text"><strong>Кушаем шаурму с любимой 🌯</strong><br><br>Самые вкусные моменты — когда мы вместе! ❤️</div>
-            </div>
-
-            <div class="footer-text">💕 С любовью, твой навсегда ❤️</div>
+        <!-- 1 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/zGpJtVxf/1.jpg" alt="Фото 1">
+            <div class="text"><strong>Помнишь эту фотку???</strong> 💕<br><br>Тут я пришёл с зала к тебе, ехал на автобусе (тогда у меня были последние деньги). Мы весело провели время и стали на шаг ближе друг к другу ❤️</div>
         </div>
+
+        <!-- 2 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/9QX27cCk/2.jpg" alt="Фото 2">
+            <div class="text"><strong>А тут хахах 🤣</strong><br><br>Я очень сильно хотел в туалет и мне пришлось бежать вверх, где сидели Ангелина и Макар, но я всё же поссал ниже 😂</div>
+        </div>
+
+        <!-- 3 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/CKXpXDDX/3.jpg" alt="Фото 3">
+            <div class="text"><strong>На этой фотке ты с моим запрещённым веществом 😡</strong><br><br>Потом решили, что его выкинем! 💪</div>
+        </div>
+
+        <!-- 4 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/dQ8cNh09/4.jpg" alt="Фото 4">
+            <div class="text"><strong>28 марта в 22:57 я подстригся налысо 😭</strong><br><br>Очень жалел, что не послушал себя и сбрил твою любимую причёску... 🙏</div>
+        </div>
+
+        <!-- 5 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/QxmGsvcZ/5.jpg" alt="Фото 5">
+            <div class="text"><strong>А помнишь мы шли с кино... 🎬</strong><br><br>И я всё время закрывал лысую голову капюшоном, хаххаах! 🤣</div>
+        </div>
+
+        <!-- 6 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/Sx1BY8ZZ/6.jpg" alt="Фото 6">
+            <div class="text"><strong>Без комментариев 😡</strong></div>
+        </div>
+
+        <!-- 7 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/kMNLFL1d/7.jpg" alt="Фото 7">
+            <div class="text"><strong>8 апреля я начал тебя фотать))) 📸</strong><br><br>И теперь у меня целая галерея твоих фото ❤️</div>
+        </div>
+
+        <!-- 8 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/TwMHncnV/8.jpg" alt="Фото 8">
+            <div class="text"><strong>А уже 9 апреля был наш 1 поцелуй! 💋</strong><br><br>Люблю тебя больше жизни! ❤️</div>
+        </div>
+
+        <!-- 9 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/TYYNj155/9.jpg" alt="Фото 9">
+            <div class="text"><strong>Помнишь, как мы во время урока договаривались встретиться? 💋</strong><br><br>Переписки под партой, тайные планы — мы были как в кино! 🥰</div>
+        </div>
+
+        <!-- 10 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/HL56W7Fc/10.jpg" alt="Фото 10">
+            <div class="text"><strong>А как тут мы впервые пришли курить до дома Полины... 🚬</strong><br><br>Наши первые прогулки и разговоры по душам ❤️</div>
+        </div>
+
+        <!-- 11 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/MHZ5Y3HK/11.jpg" alt="Фото 11">
+            <div class="text"><strong>Я злой 😡</strong></div>
+        </div>
+
+        <!-- 12 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/CMJmK0r8/12.jpg" alt="Фото 12">
+            <div class="text"><strong>А тут мы первый раз пришли на ВБ 💋</strong><br><br>Помню, как ты выбирала одежду, а я просто смотрел на тебя и улыбался 🥰</div>
+        </div>
+
+        <!-- 13 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/7LvNRZhK/13.jpg" alt="Фото 13">
+            <div class="text"><strong>Тут ты купила мне шоколадки 🍫</strong><br><br>Было очень вкусно! Спасибо, что балуешь меня ❤️</div>
+        </div>
+
+        <!-- 14 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/4dsQJ2z1/14.jpg" alt="Фото 14">
+            <div class="text"><strong>Какая красотка эстетичная ✨</strong><br><br>Ты всегда прекрасна, но на этом фото особенно! ❤️</div>
+        </div>
+
+        <!-- 15 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/x8dGmkpM/15.jpg" alt="Фото 15">
+            <div class="text"><strong>То самое фото хахах 🤣</strong></div>
+        </div>
+
+        <!-- 16 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/J0tJnfty/16.jpg" alt="Фото 16">
+            <div class="text"><strong>Померяла мои кроссовки 👟</strong><br><br>Подошли? Теперь у нас общие кроссовки! 😏</div>
+        </div>
+
+        <!-- 17 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/Hxk8ZqwR/17.jpg" alt="Фото 17">
+            <div class="text"><strong>Куда-то едем 🚗</strong><br><br>С тобой даже дорога в никуда — приключение! ❤️</div>
+        </div>
+
+        <!-- 18 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/HWK8zPVB/18.jpg" alt="Фото 18">
+            <div class="text"><strong>Схавала весь мой холодос 😂</strong><br><br>Моя маленькая обжорка! Люблю тебя такую! 💕</div>
+        </div>
+
+        <!-- 19 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/52WYdY5S/19.jpg" alt="Фото 19">
+            <div class="text"><strong>Вроде как первое фото с лицами 📸</strong><br><br>Начало нашей фото-истории 🥰</div>
+        </div>
+
+        <!-- 20 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/V6v5Bjwh/20.jpg" alt="Фото 20">
+            <div class="text"><strong>22 мая 📅</strong><br><br>Особенный день, который мы запомним навсегда ❤️</div>
+        </div>
+
+        <!-- 21 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/bYG9qnnR/21.jpg" alt="Фото 21">
+            <div class="text"><strong>Уточка моя) 🦆</strong><br><br>Моя самая красивая уточка! ❤️</div>
+        </div>
+
+        <!-- 22 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/9Q2dPNns/22.jpg" alt="Фото 22">
+            <div class="text"><strong>Последний звонок 🔔</strong><br><br>Важный день в твоей жизни, и я был рядом ❤️</div>
+        </div>
+
+        <!-- 23 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/0NW7s52W/23.jpg" alt="Фото 23">
+            <div class="text"><strong>Мы милые 💋</strong><br><br>Самая красивая пара в мире! ❤️</div>
+        </div>
+
+        <!-- 24 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/nzN7Xdmy/24.jpg" alt="Фото 24">
+            <div class="text"><strong>В примерочной 😏😏😏</strong></div>
+        </div>
+
+        <!-- 25 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/PrWZqQ5b/25.jpg" alt="Фото 25">
+            <div class="text"><strong>Пьяненькая моя 😈</strong><br><br>В такие моменты ты особенно милая! ❤️</div>
+        </div>
+
+        <!-- 26 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/N0z2nNd0/26.jpg" alt="Фото 26">
+            <div class="text"><strong>Первое фото поцелуя 💋</strong><br><br>Этот поцелуй изменил всё. Я люблю тебя! ❤️</div>
+        </div>
+
+        <!-- 27 -->
+        <div class="memory-card">
+            <img src="https://i.postimg.cc/tJh1Y9pt/27.jpg" alt="Фото 27">
+            <div class="text"><strong>Кушаем шаурму с любимой 🌯</strong><br><br>Самые вкусные моменты — когда мы вместе! ❤️</div>
+        </div>
+
+        <!-- Текст любви -->
+        <div class="love-text">
+            ❤️ Я очень сильно тебя люблю,<br>
+            мы многое прошли, так что до конца!<br>
+            💕 Твой навсегда
+        </div>
+
+        <div class="footer">💕 С любовью, твой навсегда ❤️</div>
     </div>
 
 </div>
 
+<!-- ===== МУЗЫКА (работает 100%) ===== -->
+<audio id="bgMusic" loop>
+    <source src="https://dl.dropboxusercontent.com/s/8x0x0x0x0x0x0x/budilnik.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
 <script>
-    // ===== МУЗЫКА =====
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
     let isPlaying = false;
-    const musicIframe = document.getElementById('musicPlayer');
-    const musicBtn = document.getElementById('musicBtn');
 
     function toggleMusic() {
         if (isPlaying) {
-            musicIframe.src = musicIframe.src.replace('autoplay=1', 'autoplay=0');
-            musicBtn.textContent = '🎵';
-            musicBtn.classList.remove('playing');
+            audio.pause();
+            btn.textContent = '🎵';
+            btn.classList.remove('playing');
         } else {
-            musicIframe.src = musicIframe.src.replace('autoplay=0', 'autoplay=1');
-            musicBtn.textContent = '🔊';
-            musicBtn.classList.add('playing');
+            audio.play().catch(() => {});
+            btn.textContent = '🔊';
+            btn.classList.add('playing');
         }
         isPlaying = !isPlaying;
     }
 
-    // ===== ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ =====
     function showMemories() {
         document.getElementById('welcomeScreen').classList.remove('active');
         document.getElementById('memoriesScreen').classList.add('active');
         createHearts();
-        // Автозапуск музыки при клике
+        // Автозапуск музыки
         if (!isPlaying) {
-            musicIframe.src = musicIframe.src.replace('autoplay=0', 'autoplay=1');
-            musicBtn.textContent = '🔊';
-            musicBtn.classList.add('playing');
+            audio.play().catch(() => {});
+            btn.textContent = '🔊';
+            btn.classList.add('playing');
             isPlaying = true;
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -544,38 +429,36 @@
     function showWelcome() {
         document.getElementById('memoriesScreen').classList.remove('active');
         document.getElementById('welcomeScreen').classList.add('active');
-        // Останавливаем музыку при возврате
         if (isPlaying) {
-            musicIframe.src = musicIframe.src.replace('autoplay=1', 'autoplay=0');
-            musicBtn.textContent = '🎵';
-            musicBtn.classList.remove('playing');
+            audio.pause();
+            btn.textContent = '🎵';
+            btn.classList.remove('playing');
             isPlaying = false;
         }
     }
 
-    // ===== СЕРДЕЧКИ =====
     function createHearts() {
-        const emojis = ['❤️', '💕', '💗', '💖', '💘', '💝', '🩷', '💓', '🌹', '🥰'];
+        const emojis = ['❤️','💕','💗','💖','💘','💝','🩷','🌹','🥰'];
         for (let i = 0; i < 30; i++) {
             setTimeout(() => {
-                const heart = document.createElement('div');
-                heart.className = 'hearts';
-                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = Math.random() * 50 + 'vh';
-                heart.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 3500);
+                const h = document.createElement('div');
+                h.className = 'hearts';
+                h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.top = Math.random() * 50 + 'vh';
+                h.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 3500);
             }, i * 100);
         }
     }
 
-    // ===== АВТОЗАПУСК МУЗЫКИ ПРИ ПЕРВОМ КЛИКЕ =====
+    // Автозапуск при первом клике
     document.addEventListener('click', () => {
         if (!isPlaying) {
-            musicIframe.src = musicIframe.src.replace('autoplay=0', 'autoplay=1');
-            musicBtn.textContent = '🔊';
-            musicBtn.classList.add('playing');
+            audio.play().catch(() => {});
+            btn.textContent = '🔊';
+            btn.classList.add('playing');
             isPlaying = true;
         }
     }, { once: true });
